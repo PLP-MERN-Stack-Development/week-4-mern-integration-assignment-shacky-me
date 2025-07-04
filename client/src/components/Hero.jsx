@@ -12,7 +12,7 @@ const Hero = () => {
           on a myriad of topics.
         </p>
         <Link
-          to="/blog"
+          to="/posts"
           className="bg-white text-indigo-700 hover:bg-gray-100 font-bold py-3 px-8 rounded-full text-lg shadow-lg transition-all duration-300 transform hover:scale-105 animate-zoom-in"
         >
           Start Reading
