@@ -1,27 +1,28 @@
-// const express = require("express");
-// const mongoose = require("mongoose");
-// const app = express();
-// const PORT = process.env.PORT || 5000;
+// server/index.js
+const express = require("express");
+const dotenv = require("dotenv");
+const cors = require("cors");
+const connectDB = require("./config/db");
 
-// const MONGODB_URI =
-//   "mongodb+srv://meshackkiprono12:shack888055@cluster0.bxyvxqt.mongodb.net/mern_integration";
+// Load environment variables
+dotenv.config();
 
-// const connectToDatabase = async () => {
-//   try {
-//     await mongoose.connect(MONGODB_URI);
-//     console.log("Connected to MongoDB");
-//   } catch (error) {
-//     console.error("Error connecting to MongoDB:", error);
-//     process.exit(1); // Exit the process with failure
-//   }
-// };
+// Connect to MongoDB
+connectDB();
 
-// connectToDatabase();
+const app = express();
 
-// app.get("/", (req, res) => {
-//   res.send("Hello World!");
-// });
+// Middleware
+app.use(express.json()); // For parsing application/json
+app.use(cors()); // Enable CORS
 
-// app.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
+// Basic route
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
