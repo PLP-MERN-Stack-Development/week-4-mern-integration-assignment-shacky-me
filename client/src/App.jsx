@@ -1,22 +1,34 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router";
-import HomePage from "./pages/HomePage";
-import Layout from "./components/Layout";
-import Posts from "./pages/Posts";
-import Categories from "./pages/Categories";
+// client/src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import PostListPage from "./pages/PostListPage";
+import SinglePostPage from "./pages/SinglePostPage";
+import PostFormPage from "./pages/PostFormPage";
 
-const App = () => {
+function App() {
   return (
-    <div>
-      <Router>
+    <Router>
+      <Navbar />
+      <main className="container mx-auto p-4 md:px-8 bg-gray-50 dark:bg-gray-900 min-h-[calc(100vh-64px)]">
+        {" "}
         <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="posts" element={<Posts />} />
-            <Route path="categories" element={<Categories />} />
-          </Route>
+          <Route path="/" element={<PostListPage />} />
+          <Route path="/posts/:id" element={<SinglePostPage />} />
+          <Route path="/create-post" element={<PostFormPage />} />
+          <Route path="/edit-post/:id" element={<PostFormPage />} />
+          <Route
+            path="*"
+            element={
+              <h1 className="text-center text-4xl mt-20 text-gray-700 dark:text-gray-300">
+                404 - Page Not Found
+              </h1>
+            }
+          />
         </Routes>
-      </Router>
-    </div>
+      </main>
+    </Router>
   );
-};
+}
+
 export default App;
